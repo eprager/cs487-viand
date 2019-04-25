@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:300" rel="stylesheet"> 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:700,600' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Maven+Pro|Merienda" rel="stylesheet">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
   </head>
   <body>
     <div class="wrapper">
@@ -24,24 +23,21 @@
         </div>
       </div>
       <div class="display">
-        <form method="post" action="index.html">
           <div class="long">
             <label for="address">Locate Nearby Stores</label>
-            <input type="address" name="address" placeholder="Your address..." class="address" /> 
-            <a href="#"><div class="btn">Search</div></a> <!-- End Btn -->
+            <input id="address" type="address" name="address" placeholder="Your address..." class="address" /> 
+            <a href="#"><div class="btn" id="searchbtn">Search</div></a> <!-- End Btn -->
           </div> <!-- End Box -->
-        </form>
-        <form method="post" action="index.html">
-          <div class="long">
-            <a href="item.html"><div class="btnStore">Jewel Osco</div></a>
-            <a href="item.html"><div class="btnStore">Mariano's</div></a>
-            <a href="item.html"><div class="btnStore">CVS Pharmacy</div></a>
-            <a href="item.html"><div class="btnStore">Costco</div></a>
-            <a href="item.html"><div class="btnStore">ALDI</div></a>
-            <a href="item.html"><div class="btnStore">Pete's Fresh Market</div></a>
-            <a href="item.html"><div class="btnStore">Whole Foods Market</div></a>
+          <div class="long stores">
+            <a href="item.html"><div class="btnStore" style="display: none">Jewel Osco</div></a>
+            <a href="item.html"><div class="btnStore" style="display: none">Mariano's</div></a>
+            <a href="item.html"><div class="btnStore" style="display: none">CVS Pharmacy</div></a>
+            <a href="item.html"><div class="btnStore" style="display: none">Costco</div></a>
+            <a href="item.html"><div class="btnStore" style="display: none">ALDI</div></a>
+            <a href="item.html"><div class="btnStore" style="display: none">Pete's Fresh Market</div></a>
+            <a href="item.html"><div class="btnStore" style="display: none">Whole Foods Market</div></a>
+            <span id="loader" style="display:none">Loading </span>
           </div> <!-- End Box -->
-        </form>        
       </div>
       <footer>
         <section class="footer">
@@ -50,4 +46,48 @@
       </footer>
     </div>
   </body>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
+  <script> 
+    $(function() {
+      $('#searchbtn').click(function(e) {
+        e.preventDefault();
+
+        var addr = $('#address').val();
+        if (addr == '') {
+          alert("Address is not valid.")
+          return;
+        }
+
+        var stores = $(".stores div");
+        stores.css({display: 'none'});
+
+        var load = $("#loader");
+        load.css({display: 'block'});
+
+        setTimeout(function() {
+          load.text(load.text() + '. ');
+          setTimeout(function() {
+            load.text(load.text() + '. ');
+            setTimeout(function() {
+              load.text(load.text() + '. ');
+              setTimeout(function() {
+                
+                load.css({display: 'none'});
+                load.text('Loading ')
+
+                stores.each(function(i) {
+                  if (Math.random() > 0.30) {
+                    $(this).css({display: 'block'});
+                  }
+                });
+
+              }, 500)
+            }, 500)
+          }, 500)
+        }, 500)
+
+      })
+    })
+  </script>
 </html>
