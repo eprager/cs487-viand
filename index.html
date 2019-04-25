@@ -3,13 +3,16 @@
   <head>
     <meta charset="UTF-8">
     <title>Viand</title>
-    <script src="script.js"></script>
+    <!-- <script src="script.js"></script> -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="normalize.css">
     <link href="https://fonts.googleapis.com/css?family=Bad+Script" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css?family=Poppins:300" rel="stylesheet"> 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:700,600' rel='stylesheet' type='text/css'>
+
+    <link href="https://fonts.googleapis.com/css?family=Merienda|Questrial" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
+
   </head>
   <body>
     <div class = "wrapper">
@@ -18,14 +21,12 @@
         <h3>a hassle free grocery shopping experience</h3>
       </header>
       <div id="login">
-          <form method="post" action="login.php">
             <div class="box">
               <h2>Login</h1>
-              <input type="email" name="email" placeholder="Your email..."  class="email" /> 
-              <input type="password" name="email" placeholder="Your password..." class="email" />
-              <a href="home.html"><div class="btn">Sign In</div></a> <!-- End Btn -->
+              <input id="email" type="email" name="email" placeholder="Your email..."  class="email" /> 
+              <input id="password" type="password" name="email" placeholder="Your password..." class="email" />
+              <a href=""><div class="btn" id="signin">Sign In</div></a> <!-- End Btn -->
             </div> <!-- End Box -->
-          </form>    
       </div>
       <footer>
         <section class="footer">
@@ -34,4 +35,46 @@
       </footer>
     </div>
   </body>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script> 
+    $(function() {
+      $('#signin').click(function(e) {
+        e.preventDefault();
+        console.log('heyo clicked')
+
+        var email = $('#email').val();
+        var password = $('#password').val();
+
+        var users = [
+          {email: 'admin@viand.com', password: 'admin'},
+          {email: 'pmenke@hawk.iit.edu', password: '12345678'},
+          {email: 'eprager@hawk.iit.edu', password: '12345678'},
+          {email: 'abenson@hawk.iit.edu', password: '12345678'},
+          {email: 'pr@viand.com', password: '12345678'}]
+       
+
+          var u = users.find(function(elem) {
+            return elem.email == email && elem.password == password;
+          });
+
+          if (u) {
+
+            var path = window.location.pathname;
+            //var path = '/cs487-viand/index.html';
+            var temp = path.split('/');
+            temp.pop();
+            var newpath = temp.join('/');
+
+            window.location.href = newpath + '/home.html';
+            console.log(window.location.pathname);
+          } else {
+          
+            alert('Username or password incorrect.')
+          }
+        });
+
+    });
+  </script>
+
 </html>
