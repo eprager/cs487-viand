@@ -7,7 +7,7 @@ a:link, a:visited {
 }
 
 a:hover, a:active {
-  color:  #3498db ;
+  color:  white;
   text-decoration: none;
 }
 
@@ -15,7 +15,7 @@ a:hover, a:active {
   background-color: lightgreen;
   margin: 0 auto 0 auto;
   height: 100%;
-  width: 100%;
+  width: 60%;
   padding-top: 0;
 }
 
@@ -128,4 +128,26 @@ img {
 
 .navigation ul li {
   display:inline;
+}
+
+#viand {
+  width: 100%;
+  height: auto;
+  margin: 0 auto 0 auto;
+}
+
+.header {
+  height: 15%;
+  width: 100%;
+}
+
+.display {
+  width: 100%
+  margin: 0 auto 0 auto;
+}
+
+#icon {
+  width: 50%;
+  float: left;
+  margin: 0 auto 0 auto;
 }
