@@ -19,7 +19,7 @@ a:hover, a:active {
   padding-top: 0;
 }
 
-h1 #title{
+h1.index{
   text-align: center;
   font-family: 'Merienda', cursive;
   font-size: 10em;
@@ -30,7 +30,7 @@ h1 #title{
 h1 {
   text-align: center;
   font-family: 'Merienda', cursive;
-  font-size: 10em;
+  font-size: 5em;
   margin: 0.5em 0 0 0;
   color: white;
 }
@@ -41,14 +41,6 @@ h2 {
   font-family: 'Questrial', sans-serif;
 }
 
-h3 #tag {
-  text-align: center;
-	font-size: 1.6em;
-	font-family: 'Questrial', sans-serif;  
-  font-style: italic;
-  color: #27ae60;
-  margin: 0 0 1.5em 0; 
-}
 
 h3 {
   text-align: center;
