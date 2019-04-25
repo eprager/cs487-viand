@@ -14,15 +14,16 @@
   <body>
     <div class = "wrapper">
       <header>
-        <img src="images/viand.png" id="viand" alt="Viand, A Hassle Free Grocery Shopping Experience">
+        <h1>viand</h1>
+        <h3>a hassle free grocery shopping experience</h3>
       </header>
       <div id="login">
-          <form method="post" action="index.html">
+          <form method="post" action="login.php">
             <div class="box">
               <h2>Login</h1>
-              <input type="email" name="email" value="email" onFocus="field_focus(this, 'email');" onblur="field_blur(this, 'email');" class="email" /> 
-              <input type="password" name="email" value="email" onFocus="field_focus(this, 'email');" onblur="field_blur(this, 'email');" class="email" />
-              <a href="#"><div class="btn">Sign In</div></a> <!-- End Btn -->
+              <input type="email" name="email" placeholder="Your email..."  class="email" /> 
+              <input type="password" name="email" placeholder="Your password..." class="email" />
+              <a href="home.html"><div class="btn">Sign In</div></a> <!-- End Btn -->
             </div> <!-- End Box -->
           </form>    
       </div>
