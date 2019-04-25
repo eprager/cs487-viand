@@ -24,6 +24,7 @@ h1 #title{
   font-family: 'Merienda', cursive;
   font-size: 10em;
   margin: 0.5em 0 0 0;
+  color: white;
 }
 
 h1 {
@@ -31,6 +32,7 @@ h1 {
   font-family: 'Merienda', cursive;
   font-size: 10em;
   margin: 0.5em 0 0 0;
+  color: white;
 }
 
 h2 {
@@ -44,12 +46,16 @@ h3 #tag {
 	font-size: 1.6em;
 	font-family: 'Questrial', sans-serif;  
   font-style: italic;
+  color: #27ae60;
+  margin: 0 0 1.5em 0; 
 }
 
 h3 {
   text-align: center;
 	font-size: 1.6em;
-  font-family: 'Questrial', sans-serif;  
+  font-family: 'Questrial', sans-serif;
+  color: #27ae60;  
+  margin: 0 0 1.5em 0; 
 }
 
 body {
