@@ -110,6 +110,18 @@ h2 {
   position: realtive;
 }
 
+.btnItem{
+  background:white;
+  width: auto;
+  height: auto;
+  padding: 10%;
+  border-radius:10%;
+  border: #27ae60 1px solid;
+  margin-top: 20%;
+  margin-bottom: 20%;
+  position: realtive;
+}
+
 .btn:hover{
   background:#2CC06B; 
 }
