@@ -59,7 +59,15 @@
           });
 
           if (u) {
-            window.location.href = 'home.html'
+
+            var path = window.location.pathname;
+            //var path = '/cs487-viand/index.html';
+            var temp = path.split('/');
+            temp.pop();
+            var newpath = temp.join('/');
+
+            window.location.href = newpath + '/home.html';
+            console.log(window.location.pathname);
           } else {
           
             alert('Username or password incorrect.')
