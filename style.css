@@ -31,6 +31,12 @@ h1 {
 	font-family: 'Merienda', cursive;
 }
 
+h2 {
+  font-size:1.5em;
+  color:#525252;
+  font-family: 'Merienda', cursive;
+}
+
 h3 #tag {
   text-align: center;
 	font-size: 1.6em;
@@ -58,10 +64,6 @@ p {
   color:#ffffff;
 }
 
-h2 {
-  font-size:1.5em;
-  color:#525252;
-}
 
 .box{
   background:white;
