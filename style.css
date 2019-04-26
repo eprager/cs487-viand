@@ -112,32 +112,38 @@ p {
   margin-bottom: 20%;
 }
 
+.btn:hover{
+  background:#2CC06B; 
+}
+
 .btnStore{
   background:white;
-  width: auto;
-  height: auto;
-  padding: 10%;
+  width: 10em;
+  height: 10em;
+  padding: 30%;
   border-radius:10%;
   border: #27ae60 1px solid;
-  margin-top: 20%;
-  margin-bottom: 20%;
-  position: realtive;
+  margin: 10%;
+  text-align: center;
+}
+
+.btnStore:hover {
+  color: gray;
 }
 
 .btnItem{
   background:white;
-  width: auto;
-  height: auto;
-  padding: 10%;
+  width: 10em;
+  height: 10em;
+  padding: 30%;
   border-radius:10%;
   border: #27ae60 1px solid;
-  margin-top: 20%;
-  margin-bottom: 20%;
-  position: realtive;
+  margin: 10%;
+  text-align: center;
 }
 
-.btn:hover{
-  background:#2CC06B; 
+.btnItem:hover {
+  color: gray;
 }
 
 .navigation{
