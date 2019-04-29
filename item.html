@@ -68,10 +68,18 @@
         cart = [];
       }
 
+      var path = window.location.pathname;
+      //var path = '/cs487-viand/index.html';
+      var temp = path.split('/');
+      temp.pop();
+      var newpath = temp.join('/');
+
+      
+
       var template = "" +  
       '<a href="#"><div class="btnItem">' +
         '<div class="item-name">#NAME#</div>' +
-        '<img src="/images/#ICON#" style="max-width: 5em"></img>' +
+        '<img src="#ICON#" style="max-width: 5em"></img>' +
         '<div>Available: #QUANTITY#</div>' +
         '<div class="price">Price: $#PRICE#</div>' +
         '<div class="quantity">' +
@@ -91,7 +99,7 @@
           html = html.replace("#NAME#", elem.name);
           html = html.replace("#QUANTITY#", elem.quantity);
           html = html.replace("#PRICE#", elem.price);
-          html = html.replace("#ICON#", elem.icon);
+          html = html.replace("#ICON#", newpath + '/images/' + elem.icon);
 
           $(".select-container").append(html);
         }
