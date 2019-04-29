@@ -30,7 +30,6 @@
           <div class="row">
             <div class="col-75">
               <div class="container">
-                <form action="cart.html">
           
                   <div class="row">
                     <div class="col-50">
@@ -87,8 +86,7 @@
                   <label>
                     <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
                   </label>
-                  <input type="submit" value="Confirm Order" class="btnCart">
-                </form>
+                  <input class="finish btnCart" type="submit" value="Confirm Order">
               </div>
             </div>
           
@@ -100,12 +98,17 @@
                     <b>4</b>
                   </span>
                 </h4>
-                <p><a href="#">Product 1</a> <span class="price">$15</span></p>
-                <p><a href="#">Product 2</a> <span class="price">$5</span></p>
-                <p><a href="#">Product 3</a> <span class="price">$8</span></p>
-                <p><a href="#">Product 4</a> <span class="price">$2</span></p>
+
+                <div class="cart-container">
+
+                </div>
+                <!-- <p><a href="#"></a><span class="price">$15</span></p> -->
+                
+                
                 <hr>
-                <p>Total <span class="price" style="color:black"><b>$30</b></span></p>
+                
+                
+                <p>Total <span class="price" style="color:black"><b class="total"></b></span></p>
               </div>
             </div>
           </div> 
@@ -117,4 +120,69 @@
       </footer>
     </div> 
   </body>
+
+
+  <script> 
+    $(function() {
+      var cart = JSON.parse(window.localStorage.getItem("cart"));
+
+      var products = {};
+
+      for (var i = 0; i < cart.length; i++) {
+        var t = cart[i];
+        if (products[t.name]) {
+          products[t.name].count += parseInt(t.quantity);
+        } 
+        
+        else {
+          products[t.name] = {count: parseInt(t.quantity), price: t.price};
+        }
+      }
+
+      console.log(products);
+
+      var template = '<p><a href="#">#TITLE#</a><span class="price">#PRICE#</span></p>';
+      var total = 0;
+
+
+      Object.keys(products).forEach(function(key,index) {
+        // key: the name of the object key
+        var title = template;
+        title = title.replace('#TITLE#', key + " x " + products[key].count);
+        title = title.replace('#PRICE#', '$' + parseInt(products[key].price) * parseInt(products[key].count));
+        total += parseInt(products[key].price) * parseInt(products[key].count);
+
+        $('.cart-container').append(title);
+      });
+
+      $('.total').text('$' + total);
+
+
+
+      var urlParams = new URLSearchParams(window.location.search);
+      var store = urlParams.get('store');
+      console.log(store)
+      var db = JSON.parse(window.localStorage.getItem("database"));
+
+      console.log(db)
+
+      $('.finish').click(function(e) {
+        Object.keys(products).forEach(function(key,index) {
+        // key: the name of the object key
+        var i = db[store].findIndex(function(elem) {
+          return elem.name == key;
+        })
+
+        db[store][i].quantity -= products[key].count;
+      
+        
+      });
+
+
+      window.localStorage.setItem("database", JSON.stringify(db));
+      window.localStorage.removeItem("cart");
+
+      })
+    })
+  </script>
 </html>

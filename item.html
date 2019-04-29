@@ -10,6 +10,8 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:700,600' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Merienda|Questrial" rel="stylesheet">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+
+    
   </head>
   <body>
     <div class="wrapper">
@@ -19,25 +21,29 @@
           <ul>
             <li><strong><a href="index.html">LOG OUT</a></strong></li>
             <li><strong><a href="home.html">STORES</a></strong></li>
-            <li><strong><a href="cart.html">CHECKOUT</a></strong></li>
+            <li><strong><a id="cartlink" href="cart.html">CHECKOUT</a></strong></li>
           </ul>
         </div>
       </div>
       <div class="display">
         <h2>Select an Item</h2>
-        <form method="post" action="index.html">
-          <div class="long">
-            <a href="#"><div class="btnItem">Milk</div></a>
-            <a href="#"><div class="btnItem">Butter</div></a>
-            <a href="#"><div class="btnItem">Eggs</div></a>
-            <a href="#"><div class="btnItem">Apple</div></a>
-            <a href="#"><div class="btnItem">Banana</div></a>
-            <a href="#"><div class="btnItem">Orange</div></a>
-            <a href="#"><div class="btnItem">Bread</div></a>
-            <a href="#"><div class="btnItem">Chips</div></a>
-            <a href="#"><div class="btnItem">Cookies</div></a>
+          <div class="long select-container">
+
+            
+            <!-- <a href="#"><div class="btnItem">
+              <div>Milk</div>
+              <img src="/images/milk.jpg" style="max-width: 5em"></img>
+              <div>Available: 20</div>
+              <div>Price: $100</div>
+              <div class="quantity">
+                <a href="#" class="quantity__minus"><span>-</span></a>
+                <input name="quantity" type="text" class="quantity__input" value="1">
+                <a href="#" class="quantity__plus"><span>+</span></a>
+              </div>
+              <a href="#" class="quantity__add"><span>Add</span></a>
+            </div></a> -->
+
           </div> <!-- End Box -->
-        </form>        
       </div>
       <footer>
         <section class="footer">
@@ -46,4 +52,90 @@
       </footer>
     </div>
   </body>
+
+  <script>
+    $(function() {
+      var urlParams = new URLSearchParams(window.location.search);
+      var store = urlParams.get('store');
+      var db = JSON.parse(window.localStorage.getItem('database'));
+      var cart;
+
+      $('#cartlink').attr({href: 'cart.html?store=' + store});
+
+      if (window.localStorage.getItem("cart")) {
+        cart = JSON.parse(window.localStorage.getItem("cart"));
+      } else {
+        cart = [];
+      }
+
+      var template = "" +  
+      '<a href="#"><div class="btnItem">' +
+        '<div class="item-name">#NAME#</div>' +
+        '<img src="/images/#ICON#" style="max-width: 5em"></img>' +
+        '<div>Available: #QUANTITY#</div>' +
+        '<div class="price">Price: $#PRICE#</div>' +
+        '<div class="quantity">' +
+          '<a href="#" class="quantity__minus"><span>-</span></a>' +
+          '<input name="quantity" type="text" class="quantity__input" value="1">' +
+          '<a href="#" class="quantity__plus"><span>+</span></a>' +
+        '</div>' +
+        '<a href="#" class="quantity__add"><span>Add</span></a>' +
+      '</div></a>';
+    
+
+        for (var i = 0; i < db[store].length; i++) {
+          var elem = db[store][i];
+          console.log(elem);
+
+          var html = template;
+          html = html.replace("#NAME#", elem.name);
+          html = html.replace("#QUANTITY#", elem.quantity);
+          html = html.replace("#PRICE#", elem.price);
+          html = html.replace("#ICON#", elem.icon);
+
+          $(".select-container").append(html);
+        }
+
+      // PLUS AND MINUS UI
+      const minus = $('.quantity__minus');
+      const plus = $('.quantity__plus');
+      const add = $('.quantity__add');
+      //const input = $('.quantity__input');
+
+      minus.click(function(e) {
+        e.preventDefault();
+
+        var input = $(this).parent().find('.quantity__input');
+
+        var value = input.val();
+        if (value > 1) {
+          value--;
+        }
+        input.val(value);
+      });
+      
+      plus.click(function(e) {
+        e.preventDefault();
+
+        var input = $(this).parent().find('.quantity__input');
+
+        var value = input.val();
+        value++;
+        input.val(value);
+      })
+
+      add.click(function(e) {
+        e.preventDefault();
+
+        var input_val = $(this).parent().find('.quantity__input').val();
+        var name = $(this).parent().find('.item-name').text();
+
+        var priceStr = $(this).parent().find('.price').text();
+        var price = priceStr.substr(8);
+
+        cart.push({name: name, quantity: input_val, price: price});
+        window.localStorage.setItem("cart", JSON.stringify(cart));
+      })
+    })
+  </script>
 </html>
