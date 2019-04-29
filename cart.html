@@ -95,7 +95,6 @@
                 <h4>Cart
                   <span class="price" style="color:black">
                     <i class="fa fa-shopping-cart"></i>
-                    <b>4</b>
                   </span>
                 </h4>
 
@@ -126,6 +125,10 @@
     $(function() {
       var cart = JSON.parse(window.localStorage.getItem("cart"));
 
+      if (!cart) {
+        cart = [];
+      }
+
       var products = {};
 
       for (var i = 0; i < cart.length; i++) {
@@ -139,7 +142,6 @@
         }
       }
 
-      console.log(products);
 
       var template = '<p><a href="#">#TITLE#</a><span class="price">#PRICE#</span></p>';
       var total = 0;
@@ -167,21 +169,25 @@
       console.log(db)
 
       $('.finish').click(function(e) {
+
+        if (cart.length == 0) {
+          alert("Cart cannot be empty at checkout.");
+          return;
+        }
+
         Object.keys(products).forEach(function(key,index) {
-        // key: the name of the object key
-        var i = db[store].findIndex(function(elem) {
-          return elem.name == key;
-        })
+          // key: the name of the object key
+          var i = db[store].findIndex(function(elem) {
+            return elem.name == key;
+          })
 
-        db[store][i].quantity -= products[key].count;
-      
-        
-      });
+          db[store][i].quantity -= products[key].count;
+        });
 
+        window.localStorage.setItem("database", JSON.stringify(db));
+        window.localStorage.removeItem("cart");
 
-      window.localStorage.setItem("database", JSON.stringify(db));
-      window.localStorage.removeItem("cart");
-
+        alert("Checkout successful.")
       })
     })
   </script>
