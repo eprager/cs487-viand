@@ -120,11 +120,21 @@ p {
   background:white;
   /* width: 10em;
   height: 10em; */
-  padding: 50px;
+  /* width: 10em; */
+  padding: 10px;
   border-radius:10%;
   border: #27ae60 1px solid;
   margin-top: 10%;
   /* text-align: center; */
+  text-align: center;
+  
+  display: inline-block;
+}
+
+.btnStore img {
+  max-width: 8em;
+  display:block;
+  margin:auto;
 }
 
 .store a {

@@ -351,12 +351,12 @@
       }
 
       var stores = [
-            {id: 'jewel', display: 'Jewel Osco'},
-            {id: 'marianos', display: "Mariano's"},
-            {id: 'cvs', display: 'CVS'},
-            {id: 'aldi', display: 'ALDI'},
-            {id: 'petes', display: "Pete's Fresh Market"},
-            {id: 'wholefoods', display: 'Whole Foods Market'},
+            {id: 'jewel', display: 'Jewel Osco', icon: 'Jewel-Osco-logo.png'},
+            {id: 'marianos', display: "Mariano's", icon: 'Marianos-logo.png'},
+            {id: 'cvs', display: 'CVS', icon: 'CVS-logo.png'},
+            {id: 'aldi', display: 'ALDI', icon: 'ALDI-logo.png'},
+            {id: 'petes', display: "Pete's Fresh Market", icon: 'Petes-Fresh-Market-logo.png'},
+            {id: 'wholefoods', display: 'Whole Foods Market', icon: 'Whole-Foods-Market_logo.png'},
           ]
 
       var dbstr = window.localStorage.getItem("database");
@@ -395,10 +395,18 @@
                 
                 $('.stores *').remove();
 
+                var path = window.location.pathname;
+              //var path = '/cs487-viand/index.html';
+              var temp = path.split('/');
+              temp.pop();
+              var newpath = temp.join('/');
+
+
                 for (var i = 0; i < stores.length; i++) {
                   var s = stores[i];
                   if (Math.random() > 0.30) {
-                    $('.stores').append('<a href="item.html?store=' + s.id + '"><div class="btnStore"  >'+ s.display +'</div></a>');
+                    // $('.stores').append('<a href="item.html?store=' + s.id + '"><div class="btnStore"  >'+ s.display +'</div></a>');
+                    $('.stores').append('<a href="item.html?store=' + s.id + '"><div class="btnStore"  ><img src="' + newpath + '/images/' + s.icon + '"></img></div></a>');
                   }
                 }
               }, 500)
