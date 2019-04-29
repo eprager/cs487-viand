@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Maven+Pro|Merienda" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Merienda|Questrial" rel="stylesheet">
 
+
   </head>
   <body>
     <div class="wrapper">
@@ -31,14 +32,8 @@
             <a href="#"><div class="btn" id="searchbtn">Search</div></a> <!-- End Btn -->
           </div> <!-- End Box -->
           <div class="long stores">
-            <a href="item.html"><div class="btnStore" style="display: none">Jewel Osco</div></a>
-            <a href="item.html"><div class="btnStore" style="display: none">Mariano's</div></a>
-            <a href="item.html"><div class="btnStore" style="display: none">CVS Pharmacy</div></a>
-            <a href="item.html"><div class="btnStore" style="display: none">Costco</div></a>
-            <a href="item.html"><div class="btnStore" style="display: none">ALDI</div></a>
-            <a href="item.html"><div class="btnStore" style="display: none">Pete's Fresh Market</div></a>
-            <a href="item.html"><div class="btnStore" style="display: none">Whole Foods Market</div></a>
-            <span id="loader" style="display:none">Loading </span>
+            <!-- <a href="item.html?store=wholefoods" style="display: none"><div class="btnStore"  >Whole Foods Market</div></a> -->
+
           </div> <!-- End Box -->
       </div>
       <footer>
@@ -52,6 +47,328 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
   <script> 
     $(function() {
+
+      // Setup fake storage
+      //window.localStorage.clear();
+
+      var databse = {
+        jewel: [
+          {
+            name: "Apple",
+            price: 1,
+            quantity: 30,
+            icon: 'apple.jpg'
+          },
+          {
+            name: "Banana",
+            price: 1,
+            quantity: 100,
+            icon: 'banana.jpg'
+          },
+          {
+            name: "Bread",
+            price: 2,
+            quantity: 50,
+            icon: 'bread.jpg'
+          },
+          {
+            name: "Butter",
+            price: 2,
+            quantity: 45,
+            icon: 'butter.jpg'
+          },
+          {
+            name: "Eggs",
+            price: 3,
+            quantity: 20,
+            icon: 'eggs.jpg'
+          },
+          {
+            name: "Milk",
+            price: 4,
+            quantity: 55,
+            icon: 'milk.jpg'
+          },
+          {
+            name: "Orange",
+            price: 1,
+            quantity: 20,
+            icon: 'orange.jpg'
+          }
+        ],
+        marianos: [          {
+            name: "Apple",
+            price: 1,
+            quantity: 30,
+            icon: 'apple.jpg'
+          },
+          {
+            name: "Banana",
+            price: 1,
+            quantity: 100,
+            icon: 'banana.jpg'
+          },
+          {
+            name: "Bread",
+            price: 2,
+            quantity: 50,
+            icon: 'bread.jpg'
+          },
+          {
+            name: "Butter",
+            price: 2,
+            quantity: 45,
+            icon: 'butter.jpg'
+          },
+          {
+            name: "Eggs",
+            price: 3,
+            quantity: 20,
+            icon: 'eggs.jpg'
+          },
+          {
+            name: "Milk",
+            price: 4,
+            quantity: 55,
+            icon: 'milk.jpg'
+          },
+          {
+            name: "Orange",
+            price: 1,
+            quantity: 20,
+            icon: 'orange.jpg'
+          }],
+        cvs: [          {
+            name: "Apple",
+            price: 1,
+            quantity: 30,
+            icon: 'apple.jpg'
+          },
+          {
+            name: "Banana",
+            price: 1,
+            quantity: 100,
+            icon: 'banana.jpg'
+          },
+          {
+            name: "Bread",
+            price: 2,
+            quantity: 50,
+            icon: 'bread.jpg'
+          },
+          {
+            name: "Butter",
+            price: 2,
+            quantity: 45,
+            icon: 'butter.jpg'
+          },
+          {
+            name: "Eggs",
+            price: 3,
+            quantity: 20,
+            icon: 'eggs.jpg'
+          },
+          {
+            name: "Milk",
+            price: 4,
+            quantity: 55,
+            icon: 'milk.jpg'
+          },
+          {
+            name: "Orange",
+            price: 1,
+            quantity: 20,
+            icon: 'orange.jpg'
+          }],
+        costco: [          {
+            name: "Apple",
+            price: 1,
+            quantity: 30,
+            icon: 'apple.jpg'
+          },
+          {
+            name: "Banana",
+            price: 1,
+            quantity: 100,
+            icon: 'banana.jpg'
+          },
+          {
+            name: "Bread",
+            price: 2,
+            quantity: 50,
+            icon: 'bread.jpg'
+          },
+          {
+            name: "Butter",
+            price: 2,
+            quantity: 45,
+            icon: 'butter.jpg'
+          },
+          {
+            name: "Eggs",
+            price: 3,
+            quantity: 20,
+            icon: 'eggs.jpg'
+          },
+          {
+            name: "Milk",
+            price: 4,
+            quantity: 55,
+            icon: 'milk.jpg'
+          },
+          {
+            name: "Orange",
+            price: 1,
+            quantity: 20,
+            icon: 'orange.jpg'
+          }],
+        aldi: [          {
+            name: "Apple",
+            price: 1,
+            quantity: 30,
+            icon: 'apple.jpg'
+          },
+          {
+            name: "Banana",
+            price: 1,
+            quantity: 100,
+            icon: 'banana.jpg'
+          },
+          {
+            name: "Bread",
+            price: 2,
+            quantity: 50,
+            icon: 'bread.jpg'
+          },
+          {
+            name: "Butter",
+            price: 2,
+            quantity: 45,
+            icon: 'butter.jpg'
+          },
+          {
+            name: "Eggs",
+            price: 3,
+            quantity: 20,
+            icon: 'eggs.jpg'
+          },
+          {
+            name: "Milk",
+            price: 4,
+            quantity: 55,
+            icon: 'milk.jpg'
+          },
+          {
+            name: "Orange",
+            price: 1,
+            quantity: 20,
+            icon: 'orange.jpg'
+          }],
+        petes: [          {
+            name: "Apple",
+            price: 1,
+            quantity: 30,
+            icon: 'apple.jpg'
+          },
+          {
+            name: "Banana",
+            price: 1,
+            quantity: 100,
+            icon: 'banana.jpg'
+          },
+          {
+            name: "Bread",
+            price: 2,
+            quantity: 50,
+            icon: 'bread.jpg'
+          },
+          {
+            name: "Butter",
+            price: 2,
+            quantity: 45,
+            icon: 'butter.jpg'
+          },
+          {
+            name: "Eggs",
+            price: 3,
+            quantity: 20,
+            icon: 'eggs.jpg'
+          },
+          {
+            name: "Milk",
+            price: 4,
+            quantity: 55,
+            icon: 'milk.jpg'
+          },
+          {
+            name: "Orange",
+            price: 1,
+            quantity: 20,
+            icon: 'orange.jpg'
+          }],
+        wholefoods: [          {
+            name: "Apple",
+            price: 1,
+            quantity: 30,
+            icon: 'apple.jpg'
+          },
+          {
+            name: "Banana",
+            price: 1,
+            quantity: 100,
+            icon: 'banana.jpg'
+          },
+          {
+            name: "Bread",
+            price: 2,
+            quantity: 50,
+            icon: 'bread.jpg'
+          },
+          {
+            name: "Butter",
+            price: 2,
+            quantity: 45,
+            icon: 'butter.jpg'
+          },
+          {
+            name: "Eggs",
+            price: 3,
+            quantity: 20,
+            icon: 'eggs.jpg'
+          },
+          {
+            name: "Milk",
+            price: 4,
+            quantity: 55,
+            icon: 'milk.jpg'
+          },
+          {
+            name: "Orange",
+            price: 1,
+            quantity: 20,
+            icon: 'orange.jpg'
+          }]
+      }
+
+      var stores = [
+            {id: 'jewel', display: 'Jewel Osco', icon: 'Jewel-Osco-logo.png'},
+            {id: 'marianos', display: "Mariano's", icon: 'Marianos-logo.png'},
+            {id: 'cvs', display: 'CVS', icon: 'CVS-logo.png'},
+            {id: 'aldi', display: 'ALDI', icon: 'ALDI-logo.png'},
+            {id: 'petes', display: "Pete's Fresh Market", icon: 'Petes-Fresh-Market-logo.png'},
+            {id: 'wholefoods', display: 'Whole Foods Market', icon: 'Whole-Foods-Market_logo.png'},
+          ]
+
+      var dbstr = window.localStorage.getItem("database");
+      if (!dbstr) {
+        console.log('adding!')
+        window.localStorage.setItem("database", JSON.stringify(databse));
+
+      } else {
+        console.log('already exists!')
+      }
+
+      // Handle fake search
       $('#searchbtn').click(function(e) {
         e.preventDefault();
 
@@ -61,11 +378,12 @@
           return;
         }
 
-        var stores = $(".stores div");
-        stores.css({display: 'none'});
-
+        $('.stores *').remove();
+        
+        $('.stores').append('<span id="loader" >Loading </span>');
         var load = $("#loader");
-        load.css({display: 'block'});
+
+        console.log('here');
 
         setTimeout(function() {
           load.text(load.text() + '. ');
@@ -75,15 +393,22 @@
               load.text(load.text() + '. ');
               setTimeout(function() {
                 
-                load.css({display: 'none'});
-                load.text('Loading ')
+                $('.stores *').remove();
 
-                stores.each(function(i) {
+                var path = window.location.pathname;
+              //var path = '/cs487-viand/index.html';
+              var temp = path.split('/');
+              temp.pop();
+              var newpath = temp.join('/');
+
+
+                for (var i = 0; i < stores.length; i++) {
+                  var s = stores[i];
                   if (Math.random() > 0.30) {
-                    $(this).css({display: 'block'});
+                    // $('.stores').append('<a href="item.html?store=' + s.id + '"><div class="btnStore"  >'+ s.display +'</div></a>');
+                    $('.stores').append('<a href="item.html?store=' + s.id + '"><div class="btnStore"  ><img src="' + newpath + '/images/' + s.icon + '"></img></div></a>');
                   }
-                });
-
+                }
               }, 500)
             }, 500)
           }, 500)
